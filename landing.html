@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Desafío 21 Días de Autocuidado Zeyra</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Un desafío práctico de 21 días para recuperar tu energía, volver a mirarte con cariño y crear microhábitos de autocuidado real, aunque tengas poco tiempo." />
+  <style>
+    :root {
+      --bg: #fff7f9;
+      --bg-strong: #f9e3ea;
+      --accent: #f18ca8;
+      --accent-dark: #d9698a;
+      --text-main: #2b1b25;
+      --text-soft: #6b5a64;
+      --card: #ffffff;
+      --border-soft: #f1d6df;
+      --success: #68b38c;
+      --shadow-soft: 0 14px 40px rgba(0,0,0,0.06);
+      --radius-lg: 18px;
+      --radius-pill: 999px;
+      --max-width: 980px;
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background: radial-gradient(circle at top left, #ffe0ec 0, #fff7fb 40%, #ffffff 100%);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 24px 16px 64px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #f7a2bd, #f18ca8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .logo-text {
+      font-weight: 600;
+      font-size: 17px;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--text-main);
+    }
+
+    .badge-small {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      background: rgba(241, 140, 168, 0.1);
+      color: var(--accent-dark);
+      font-weight: 500;
+      border: 1px solid rgba(241, 140, 168, 0.2);
+    }
+
+    /* HERO */
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+      gap: 32px;
+      margin-bottom: 40px;
+      align-items: center;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .hero-kicker {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-dark);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-kicker span.dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent-dark);
+    }
+
+    .hero-title {
+      font-size: 30px;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-title span.highlight {
+      background: linear-gradient(120deg, #f7a2bd, #f18ca8);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 15px;
+      color: var(--text-soft);
+    }
+
+    .hero-benefits {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .hero-benefit {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-soft);
+    }
+
+    .hero-benefit-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(241, 140, 168, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .btn-primary {
+      padding: 13px 26px;
+      border-radius: var(--radius-pill);
+      border: none;
+      outline: none;
+      cursor: pointer;
+      background: linear-gradient(135deg, #f7a2bd, #f18ca8);
+      color: #fff;
+      font-weight: 600;
+      font-size: 15px;
+      box-shadow: 0 14px 36px rgba(241, 140, 168, 0.45);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      transition: transform 0.1s ease, box-shadow 0.1s ease, opacity 0.15s ease;
+    }
+
+    .btn-primary span.arrow {
+      font-size: 17px;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 40px rgba(241, 140, 168, 0.55);
+      opacity: 0.98;
+    }
+
+    .hero-guarantee {
+      font-size: 12px;
+      color: var(--text-soft);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-guarantee span.icon {
+      font-size: 15px;
+    }
+
+    .hero-right {
+      background: var(--card);
+      border-radius: var(--radius-lg);
+      padding: 20px 18px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid var(--border-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .hero-tag {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    .hero-ebook-title {
+      font-size: 17px;
+      font-weight: 600;
+    }
+
+    .hero-ebook-sub {
+      font-size: 13px;
+      color: var(--text-soft);
+    }
+
+    .price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-top: 4px;
+      flex-wrap: wrap;
+    }
+
+    .price-old {
+      font-size: 13px;
+      color: var(--text-soft);
+      text-decoration: line-through;
+    }
+
+    .price-main {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--accent-dark);
+    }
+
+    .price-badge {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      background: rgba(104, 179, 140, 0.12);
+      color: var(--success);
+      font-weight: 600;
+    }
+
+    .price-note {
+      font-size: 12px;
+      color: var(--text-soft);
+    }
+
+    .hero-checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--text-soft);
+    }
+
+    .hero-checklist li::before {
+      content: "✔";
+      margin-right: 6px;
+      color: var(--success);
+      font-size: 11px;
+    }
+
+    .hero-deadline {
+      font-size: 12px;
+      color: var(--accent-dark);
+      font-weight: 600;
+    }
+
+    .trust-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      color: var(--text-soft);
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    .trust-badges {
+      display: flex;
+      gap: 4px;
+      font-size: 16px;
+    }
+
+    /* SECTIONS */
+
+    section {
+      margin-bottom: 40px;
+    }
+
+    .section-title {
+      font-size: 22px;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .section-subtitle {
+      font-size: 14px;
+      color: var(--text-soft);
+      max-width: 640px;
+    }
+
+    .pill-label {
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+      background: rgba(241, 140, 168, 0.11);
+      border: 1px solid rgba(241, 140, 168, 0.25);
+      display: inline-block;
+      color: var(--accent-dark);
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .problems-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .problem-card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 14px 14px 12px;
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+      font-size: 13px;
+      color: var(--text-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .problem-icon {
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .problem-tag {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      font-size: 11px;
+      color: rgba(0,0,0,0.25);
+    }
+
+    .problem-card strong {
+      color: var(--text-main);
+    }
+
+    /* For who */
+
+    .bullets-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 14px;
+      font-size: 14px;
+      color: var(--text-soft);
+    }
+
+    .bullets-list li {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    .bullets-list li span.icon {
+      font-size: 16px;
+      margin-top: 2px;
+    }
+
+    /* Why works */
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .pillar-card {
+      background: #fff6fa;
+      border-radius: 16px;
+      padding: 14px 14px 12px;
+      border: 1px solid rgba(241, 140, 168, 0.3);
+      font-size: 13px;
+      color: var(--text-soft);
+    }
+
+    .pillar-title {
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: var(--text-main);
+    }
+
+    .pillar-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent-dark);
+      margin-bottom: 2px;
+    }
+
+    /* What if nothing */
+
+    .warning-box {
+      background: #fff3f4;
+      border-radius: 16px;
+      padding: 16px 16px 14px;
+      border: 1px dashed rgba(230, 130, 130, 0.9);
+      color: var(--text-soft);
+      font-size: 14px;
+      margin-top: 16px;
+    }
+
+    .warning-box strong {
+      color: var(--text-main);
+    }
+
+    /* Comparison */
+
+    .comparison-wrapper {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .comparison-card {
+      background: var(--card);
+      border-radius: 18px;
+      padding: 16px 16px 12px;
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.03);
+      font-size: 13px;
+      color: var(--text-soft);
+    }
+
+    .comparison-card.bad {
+      background: #fff6f6;
+    }
+
+    .comparison-card.good {
+      background: #f4fbf6;
+      border-color: rgba(104, 179, 140, 0.4);
+    }
+
+    .comparison-title {
+      font-weight: 600;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .comparison-title span.icon {
+      font-size: 17px;
+    }
+
+    .comparison-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .comparison-list li::before {
+      content: "•";
+      margin-right: 6px;
+      color: rgba(0,0,0,0.25);
+    }
+
+    .comparison-list.good li::before {
+      content: "✦";
+      color: var(--success);
+      font-size: 11px;
+    }
+
+    /* What you get */
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .feature-card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 14px 14px 12px;
+      border: 1px solid var(--border-soft);
+      font-size: 13px;
+      color: var(--text-soft);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    }
+
+    .feature-icon {
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .feature-title {
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+
+    /* Testimonials */
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .testimonial-card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 14px 14px 12px;
+      border: 1px solid var(--border-soft);
+      font-size: 13px;
+      color: var(--text-soft);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    }
+
+    .testimonial-name {
+      font-weight: 600;
+      margin-top: 8px;
+      color: var(--text-main);
+    }
+
+    .testimonial-tag {
+      font-size: 11px;
+      color: rgba(0,0,0,0.4);
+    }
+
+    /* Guarantee */
+
+    .guarantee-box {
+      background: #f5fff9;
+      border-radius: 18px;
+      padding: 18px 16px 16px;
+      border: 1px solid rgba(104, 179, 140, 0.4);
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 12px;
+      align-items: flex-start;
+      font-size: 13px;
+      color: var(--text-soft);
+      margin-top: 18px;
+    }
+
+    .guarantee-icon {
+      font-size: 30px;
+    }
+
+    .guarantee-title {
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: var(--text-main);
+    }
+
+    /* Final CTA */
+
+    .final-cta {
+      text-align: center;
+      background: var(--card);
+      border-radius: 22px;
+      padding: 22px 18px 20px;
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .final-cta h2 {
+      font-size: 22px;
+      margin-bottom: 6px;
+    }
+
+    .final-cta p {
+      font-size: 14px;
+      color: var(--text-soft);
+      margin-bottom: 14px;
+    }
+
+    .final-price-row {
+      display: flex;
+      justify-content: center;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .footer-note {
+      margin-top: 8px;
+      font-size: 11px;
+      color: var(--text-soft);
+    }
+
+    footer {
+      margin-top: 32px;
+      font-size: 11px;
+      color: rgba(0,0,0,0.45);
+      text-align: center;
+    }
+
+    @media (max-width: 780px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-right {
+        order: -1;
+      }
+
+      header {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      .hero-title {
+        font-size: 26px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="logo">
+        <div class="logo-mark">Z</div>
+        <div>
+          <div class="logo-text">Desafío Zeyra</div>
+          <div style="font-size:11px;color:var(--text-soft);margin-top:2px;">
+            21 días de autocuidado real, sin culpas
+          </div>
+        </div>
+      </div>
+      <div class="badge-small">Nuevo · Solo desde este enlace</div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-left">
+        <div class="hero-kicker">
+          <span class="dot"></span>
+          21 DÍAS PARA VOLVER A CUIDARTE DE VERDAD
+        </div>
+        <h1 class="hero-title">
+          El cuidado que has ido posponiendo<br />
+          empieza hoy con el <span class="highlight">Desafío Zeyra 21 Días</span>.
+        </h1>
+        <p class="hero-subtitle">
+          Un ebook-desafío práctico y sencillo para mujeres que viven con prisa,
+          se sienten agotadas y quieren recuperar su energía, su autoestima 
+          y sus pequeños rituales diarios de autocuidado — sin pasar horas frente al espejo.
+        </p>
+
+        <div class="hero-benefits">
+          <div class="hero-benefit">
+            <div class="hero-benefit-icon">⏱</div>
+            <span>Microhábitos de menos de 10 minutos al día</span>
+          </div>
+          <div class="hero-benefit">
+            <div class="hero-benefit-icon">💗</div>
+            <span>Orientado a madres y mujeres con la agenda llena</span>
+          </div>
+          <div class="hero-benefit">
+            <div class="hero-benefit-icon">🧴</div>
+            <span>Rutinas de piel, aroma y presencia que encajan en tu vida real</span>
+          </div>
+        </div>
+
+        <div class="hero-cta-row">
+          <a href="#comprar" class="btn-primary">
+            <span>Quiero empezar mis 21 días</span>
+            <span class="arrow">✨</span>
+          </a>
+          <div class="hero-guarantee">
+            <span class="icon">🧾</span>
+            <span>Acceso inmediato al ebook en PDF · Garantía de 7 días</span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-right" id="comprar">
+        <div class="hero-tag">Oferta especial de lanzamiento</div>
+        <div class="hero-ebook-title">
+          Ebook + Desafío “21 Días de Autocuidado Zeyra”
+        </div>
+        <div class="hero-ebook-sub">
+          Plan diario guiado para volver a mirarte con cariño y recuperar tus rituales de belleza y bienestar.
+        </div>
+
+        <div class="price-row">
+          <!-- Cambia aquí el precio cuando lo definas -->
+          <div class="price-old">Antes 47,00 €</div>
+          <div class="price-main">17,00 €</div>
+          <div class="price-badge">-64% solo hoy</div>
+        </div>
+        <div class="price-note">
+          Pago único · Ebook en PDF descargable · Acceso para siempre
+        </div>
+
+        <ul class="hero-checklist">
+          <li>21 días con acciones pequeñas y realistas, pensadas para una vida con poco tiempo.</li>
+          <li>Rituales de piel, cuerpo, perfume y mente para volver a sentirte presente en tu propio día.</li>
+          <li>Espacios de reflexión guiada para dejar de cuidarte solo “cuando sobra tiempo”.</li>
+        </ul>
+
+        <a href="#cta-final" class="btn-primary" style="width:100%;justify-content:center;margin-top:8px;">
+          Empezar ahora mismo
+        </a>
+
+        <div class="hero-deadline">
+          ⏰ Solo por tiempo limitado desde este enlace.
+        </div>
+
+        <div class="trust-row">
+          <span>Pago 100% seguro</span>
+          <div class="trust-badges">
+            <span>💳</span><span>🛡️</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- PROBLEMAS -->
+    <section>
+      <div class="pill-label">Te suena algo de esto...</div>
+      <h2 class="section-title">¿Te levantas cansada incluso los días “tranquilos”?</h2>
+      <p class="section-subtitle">
+        Vives apagada y en piloto automático. Cuidas de todo el mundo, menos de ti.
+        Tu piel, tu pelo, tu energía y tu ánimo te están pidiendo una pausa, 
+        pero te sientes culpable hasta por ponerte crema con calma.
+      </p>
+
+      <div class="problems-grid">
+        <div class="problem-card">
+          <div class="problem-icon">😮‍💨</div>
+          <div class="problem-tag">01</div>
+          <strong>Sientes que te has perdido un poco por el camino</strong>.
+          Cuando te miras al espejo, cuesta reconocerte. Sabes que podrías
+          sentirte mucho mejor, pero no sabes ni por dónde empezar.
+        </div>
+        <div class="problem-card">
+          <div class="problem-icon">⏰</div>
+          <div class="problem-tag">02</div>
+          <strong>No tienes horas libres, solo ratitos sueltos</strong>.
+          Entre casa, trabajo, niños y mil cosas más, el autocuidado
+          siempre es lo primero que cae de la lista.
+        </div>
+        <div class="problem-card">
+          <div class="problem-icon">💔</div>
+          <div class="problem-tag">03</div>
+          <strong>El cansancio ya se nota en tu cuerpo y en tu cara</strong>.
+          Piel apagada, ojeras, pelo descuidado… y una sensación constante
+          de estar “de fondo” en tu propia vida.
+        </div>
+      </div>
+    </section>
+
+    <!-- PARA QUIÉN ES -->
+    <section>
+      <div class="pill-label">El Desafío Zeyra es para ti si...</div>
+      <h2 class="section-title">Quieres volver a sentirte presente en tu cuerpo y en tu vida.</h2>
+
+      <ul class="bullets-list">
+        <li>
+          <span class="icon">🌸</span>
+          <span>Quieres recuperar el hábito de arreglarte por ti, no solo para los demás o para las fotos.</span>
+        </li>
+        <li>
+          <span class="icon">👶</span>
+          <span>Eres madre o tienes mil responsabilidades y necesitas una forma de cuidarte que encaje en tu realidad.</span>
+        </li>
+        <li>
+          <span class="icon">🧠</span>
+          <span>Te notas mentalmente agotada y quieres pequeños rituales que te devuelvan claridad y calma.</span>
+        </li>
+        <li>
+          <span class="icon">✨</span>
+          <span>No quieres un manual teórico infinito, sino un plan claro: qué hacer hoy, mañana y los próximos 21 días.</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- POR QUÉ FUNCIONA -->
+    <section>
+      <div class="pill-label">Por qué funciona</div>
+      <h2 class="section-title">No es solo un ebook bonito. Es un plan diario que te acompaña.</h2>
+      <p class="section-subtitle">
+        El Desafío Zeyra trabaja a la vez tu cuerpo, tu mente y tu energía a través de microhábitos 
+        que encajan en días reales, con caos, niños, trabajo y cansancio.
+      </p>
+
+      <div class="pillars-grid">
+        <div class="pillar-card">
+          <div class="pillar-label">Pilar 1</div>
+          <div class="pillar-title">Cuerpo & Piel</div>
+          Rutinas simples de cuidado facial, corporal y capilar que puedes hacer en 5-10 minutos,
+          con productos que probablemente ya tienes en casa.
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-label">Pilar 2</div>
+          <div class="pillar-title">Aroma & Presencia</div>
+          Hábitos con perfume, manos, cabello y pequeños detalles que cambian cómo te percibes tú
+          y cómo te perciben los demás, sin necesidad de “perfección”.
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-label">Pilar 3</div>
+          <div class="pillar-title">Mente & Autoestima</div>
+          Frases ancla, ejercicios breves de reflexión y rituales nocturnos para dejar de hablarte mal
+          y empezar a tratarte como tratarías a alguien que quieres.
+        </div>
+      </div>
+    </section>
+
+    <!-- Y SI NO HACES NADA -->
+    <section>
+      <div class="pill-label">Y si no haces nada…</div>
+      <h2 class="section-title">Ya sabes cómo se siente seguir posponiéndote a ti misma.</h2>
+      <p class="section-subtitle">
+        Otro mes pasa. Otro año pasa. Sigues siempre para después. Y el cansancio se hace norma.
+        No porque no tengas valor, sino porque nunca hubo un plan sencillo que te acompañara día a día.
+      </p>
+
+      <div class="warning-box">
+        <strong>La verdad es simple:</strong> si no haces algo diferente ahora, nada cambia. <br />
+        Y tú no mereces vivir apagada cuando hay una mujer llena de vida, belleza y presencia 
+        esperando a ser cuidada dentro de ti.
+      </div>
+    </section>
+
+    <!-- COMPARACIÓN -->
+    <section>
+      <div class="pill-label">Antes y después del desafío</div>
+      <h2 class="section-title">¿Cómo se ve tu vida con y sin estos 21 días?</h2>
+
+      <div class="comparison-wrapper">
+        <div class="comparison-card bad">
+          <div class="comparison-title">
+            <span class="icon">😵‍💫</span>
+            <span>Sin el Desafío 21 Días Zeyra</span>
+          </div>
+          <ul class="comparison-list">
+            <li>Te miras al espejo solo para criticarte.</li>
+            <li>El perfume, la crema y el cuidado del pelo son “lujos” para días especiales.</li>
+            <li>Te sigues vistiendo con lo primero que pillas, sin conectar contigo.</li>
+            <li>El cansancio es tu estado normal, incluso cuando “descansas”.</li>
+          </ul>
+        </div>
+
+        <div class="comparison-card good">
+          <div class="comparison-title">
+            <span class="icon">🌷</span>
+            <span>Con el Desafío 21 Días Zeyra</span>
+          </div>
+          <ul class="comparison-list comparison-list good">
+            <li>Vuelves a tener pequeños momentos de presencia solo para ti cada día.</li>
+            <li>Tu piel, tu pelo y tu aroma empiezan a reflejar el cuidado que te das.</li>
+            <li>Tu ropa, tu maquillaje y tus gestos dejan de ser obligación y vuelven a ser placer.</li>
+            <li>Te sientes más segura, más ligera y más en paz contigo misma.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUÉ INCLUYE -->
+    <section>
+      <div class="pill-label">Qué vas a recibir</div>
+      <h2 class="section-title">Todo lo que necesitas para 21 días de autocuidado real.</h2>
+
+      <div class="cards-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📕</div>
+          <div class="feature-title">Ebook principal en PDF</div>
+          Guía completa con la metodología Zeyra, explicada de forma sencilla, 
+          para entender el porqué de cada microhábito y cómo adaptarlo a tu rutina.
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🗓️</div>
+          <div class="feature-title">Planner de 21 días</div>
+          Calendario con las acciones diarias ya organizadas para que no tengas que pensar: 
+          solo abrir, leer y aplicar en menos de 10 minutos.
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">✅</div>
+          <div class="feature-title">Checklists imprimibles</div>
+          Listas de cuidado de piel, cabello y perfume para marcar tus avances y ver,
+          negro sobre blanco, cómo vuelves a elegirte cada día.
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💬</div>
+          <div class="feature-title">Frases ancla & rituales</div>
+          Frases de presencia, pequeñas reflexiones guiadas y rituales para mañana y noche
+          que ayudan a limpiar la culpa y traer más cariño hacia ti.
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIOS (placeholder) -->
+    <section>
+      <div class="pill-label">Lo que dicen mujeres como tú</div>
+      <h2 class="section-title">Historias reales de quien empezó por microhábitos.</h2>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          “Llevaba años sintiéndome invisible. En una semana de desafío ya me notaba más 
+          presente y con ganas de arreglarme, aunque fuera solo para estar en casa con mis hijos.”
+          <div class="testimonial-name">Laura M.</div>
+          <div class="testimonial-tag">Mamá de 2 · Empezó el desafío agotada</div>
+        </div>
+        <div class="testimonial-card">
+          “Lo que más me ayudó fue dejar de ver el autocuidado como algo superficial. 
+          Ahora mi crema, mi perfume y mis 5 minutos de espejo son el recordatorio diario de que no me dejo para el final.”
+          <div class="testimonial-name">Patricia G.</div>
+          <div class="testimonial-tag">Trabajadora por turnos · Sin tiempo “libre”</div>
+        </div>
+        <div class="testimonial-card">
+          “No es un ebook para leer y olvidar. Es un acompañamiento día a día. 
+          Sientes que por fin hay un plan hecho para mujeres que viven con prisa, no para vidas perfectas de Instagram.”
+          <div class="testimonial-name">Marta R.</div>
+          <div class="testimonial-tag">Seguidora de @stefy.zeyra</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GARANTÍA -->
+    <section>
+      <div class="pill-label">Compra sin miedo</div>
+      <h2 class="section-title">7 días para probar. O te quedas encantada, o te devuelvo el dinero.</h2>
+
+      <div class="guarantee-box">
+        <div class="guarantee-icon">🧾</div>
+        <div>
+          <div class="guarantee-title">Garantía de satisfacción Zeyra</div>
+          Si en los primeros 7 días sientes que el Desafío 21 Días de Autocuidado Zeyra
+          no es para ti, o no encaja con tu momento, solo tienes que escribirnos
+          y te devolvemos el 100% del importe. Sin preguntas, sin culpa.
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section id="cta-final">
+      <div class="final-cta">
+        <h2>¿Lista para volver a tratarte como alguien importante en tu propia vida?</h2>
+        <p>
+          No necesitas más horas. Necesitas un plan sencillo, hecho para mujeres reales, 
+          que te devuelva el hábito de cuidarte un poquito cada día.
+        </p>
+
+        <div class="final-price-row">
+          <span class="price-old">Antes 47,00 €</span>
+          <span class="price-main">17,00 €</span>
+          <span class="price-badge">Oferta especial</span>
+        </div>
+
+        <a href="#" class="btn-primary">
+          <span>Quiero mi ebook + desafío ahora</span>
+          <span class="arrow">💗</span>
+        </a>
+
+        <div class="footer-note">
+          Descarga inmediata · PDF compatible con móvil, tablet y ordenador · Acceso para siempre
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © Zeyra · Desafío 21 Días de Autocuidado. Este contenido no sustituye asesoramiento médico profesional.
+    </footer>
+  </div>
+</body>
+</html>

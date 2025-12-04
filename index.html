@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reto Zeyra • 21 Días de Autocuidado</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- SEÇÃO HERO -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="title">Tu transformación empieza aquí</h1>
+            <p class="subtitle">
+                Un reto práctico de 21 días para recuperar tu energía, tu autoestima y tus hábitos.
+            </p>
+            <button id="startQuiz" class="btn-primary">Comenzar diagnóstico</button>
+        </div>
+    </header>
+
+    <!-- QUIZ CONTAINER -->
+    <section id="quizContainer" class="quiz hidden">
+
+        <div id="progressBarContainer">
+            <div id="progressBar"></div>
+        </div>
+
+        <div id="quizStep">
+            <!-- As perguntas serão injetadas via script.js -->
+        </div>
+
+    </section>
+
+    <!-- RESULTADO -->
+    <section id="resultSection" class="hidden result">
+        <h2 class="result-title">Tu plan personalizado está listo ✨</h2>
+        <p class="result-text">
+            Según tus respuestas, el <strong>Reto Zeyra de 21 Días</strong> encaja exactamente contigo.  
+            Ha sido diseñado para mujeres que quieren recuperar energía, claridad y autocuidado real.
+        </p>
+
+        <a class="btn-primary" href="#" onclick="goToLanding()">
+            Ver mi plan ahora
+        </a>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

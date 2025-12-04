@@ -163,7 +163,7 @@ function finishQuiz() {
   resultSection.classList.remove("hidden");
 
   // (Opcional) redirecionar automaticamente para a landing após alguns segundos:
-  // setTimeout(() => {
-  //   window.location.href = landingUrl;
-  // }, 3000);
+   setTimeout(() => {
+     window.location.href = landingUrl;
+    }, 3000);
 }

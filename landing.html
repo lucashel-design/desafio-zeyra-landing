@@ -652,6 +652,51 @@
       text-align: center;
     }
 
+    /* --------- PURCHASE TOAST --------- */
+
+    .purchase-toast {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      max-width: 260px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: #ffffff;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+      border: 1px solid rgba(0,0,0,0.05);
+      font-size: 12px;
+      color: var(--text-soft);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      opacity: 0;
+      transform: translateY(-10px);
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      z-index: 9999;
+    }
+
+    .purchase-toast.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .purchase-toast-icon {
+      font-size: 18px;
+      margin-top: 2px;
+    }
+
+    .purchase-toast-close {
+      margin-left: auto;
+      border: none;
+      background: none;
+      font-size: 14px;
+      cursor: pointer;
+      color: rgba(0,0,0,0.35);
+      padding: 0;
+    }
+
     @media (max-width: 1024px) {
       .hero {
         grid-template-columns: 1fr;
@@ -1039,5 +1084,79 @@
       Reto 21 Días de Autocuidado. Este contenido no sustituye asesoramiento médico profesional.
     </footer>
   </div>
+
+    <!-- Toast de compras en tiempo "real" -->
+  <div class="purchase-toast" id="purchaseToast">
+    <div class="purchase-toast-icon">🛍️</div>
+    <div class="purchase-toast-text">
+      <!-- El texto se rellena por JavaScript -->
+    </div>
+    <button class="purchase-toast-close" aria-label="Cerrar notificación">&times;</button>
+  </div>
+
+    <script>
+    (function() {
+      const toast = document.getElementById('purchaseToast');
+      const textEl = toast.querySelector('.purchase-toast-text');
+      const closeBtn = toast.querySelector('.purchase-toast-close');
+
+      // Mensajes rotativos (puedes editar o añadir más)
+      const messages = [
+        `<strong>Reto 21 Días + Guía Práctica</strong><br>
+        Hace un momento otra mujer ha completado su compra. Puedes ser la siguiente. 💗`,
+
+        `<strong>Reto 21 Días + Guía Práctica</strong><br>
+        Varias mujeres están empezando hoy el reto contigo. No tienes que hacerlo sola.`,
+
+        `<strong>Reto 21 Días + Guía Práctica</strong><br>
+        Cada día más mujeres reservan sus 10 minutos para cuidarse de verdad.`,
+
+        `<strong>Reto 21 Días + Guía Práctica</strong><br>
+        Ahora mismo hay mujeres en España haciendo el Día 1 del reto.`,
+
+        `<strong>Reto 21 Días + Guía Práctica</strong><br>
+        Tu yo de dentro de 21 días te va a dar las gracias por empezar hoy. ✨`
+      ];
+
+      let currentIndex = 0;
+      let manuallyClosed = false;
+
+      // Configuración de tiempos
+      const INITIAL_DELAY = 6000;     // 1ª vez: 6 segundos tras cargar la página
+      const SHOW_DURATION = 10000;    // tiempo visible: 10 s
+      const INTERVAL_DELAY = 60000;  // intervalo entre apariciones: 60.000 ms = 1 minutos
+
+      function setMessage() {
+        textEl.innerHTML = messages[currentIndex];
+        currentIndex = (currentIndex + 1) % messages.length;
+      }
+
+      function showToast() {
+        if (manuallyClosed) return; // si el usuario lo cerró, no insistimos
+        setMessage();
+        toast.classList.add('show');
+
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, SHOW_DURATION);
+      }
+
+      // 1ª aparición
+      window.addEventListener('load', () => {
+        setTimeout(showToast, INITIAL_DELAY);
+
+        // Apariciones posteriores cada X minutos
+        setTimeout(() => {
+          setInterval(showToast, INTERVAL_DELAY);
+        }, INITIAL_DELAY + SHOW_DURATION);
+      });
+
+      // Cierre manual
+      closeBtn.addEventListener('click', () => {
+        manuallyClosed = true;
+        toast.classList.remove('show');
+      });
+    })();
+  </script>
 </body>
 </html>

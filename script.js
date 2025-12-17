@@ -2,6 +2,16 @@
 // SCRIPT QUIZ · RETO ZEYRA 21 DÍAS
 // ----------------------------------------
 
+// Evento: quiz aberto
+window.addEventListener("DOMContentLoaded", () => {
+  if (typeof gtag === "function") {
+    gtag("event", "quiz_opened", {
+      event_category: "quiz",
+      event_label: "Quiz Zeyra"
+    });
+  }
+});
+
 // Seleção dos elementos principais
 const startBtn = document.getElementById("startQuiz");
 const heroSection = document.querySelector(".hero");
@@ -10,14 +20,19 @@ const quizStep = document.getElementById("quizStep");
 const progressBar = document.getElementById("progressBar");
 const resultSection = document.getElementById("resultSection");
 
-// URL da landing final (ajusta depois)
+// URL da landing final
 const landingUrl = "landing.html";
 
 function goToLanding() {
-    window.location.href = landingUrl;
+  if (typeof gtag === "function") {
+    gtag("event", "go_to_landing_click", {
+      event_category: "funnel"
+    });
+  }
+  window.location.href = landingUrl;
 }
 
-// Array de perguntas + respostas (copy adaptada)
+// Perguntas
 const questions = [
   {
     question: "¿Sientes que estás viviendo por debajo de lo que podrías ser?",
@@ -61,8 +76,7 @@ const questions = [
     ]
   },
   {
-    question:
-      "Si pudieras cambiar UNA sola cosa ahora mismo, ¿qué sería?",
+    question: "Si pudieras cambiar UNA sola cosa ahora mismo, ¿qué sería?",
     answers: [
       "🏃 Mis hábitos y mi autocuidado",
       "🧘 Mi energía emocional",
@@ -70,8 +84,7 @@ const questions = [
     ]
   },
   {
-    question:
-      "Si te quedara solo 1 año de vida… ¿cómo evaluarías los últimos 5?",
+    question: "Si te quedara solo 1 año de vida… ¿cómo evaluarías los últimos 5?",
     answers: [
       "❌ Tiempo perdido",
       "👎 Hice menos por mí de lo que merecía",
@@ -81,12 +94,18 @@ const questions = [
 ];
 
 let currentQuestionIndex = 0;
-// Se quiseres usar as respostas depois, guarda aqui:
 let selectedAnswers = [];
 
-// Iniciar quiz ao clicar no botão do hero
+// Iniciar quiz
 if (startBtn) {
   startBtn.addEventListener("click", () => {
+
+    if (typeof gtag === "function") {
+      gtag("event", "quiz_started", {
+        event_category: "quiz"
+      });
+    }
+
     heroSection.classList.add("hidden");
     quizContainer.classList.remove("hidden");
     currentQuestionIndex = 0;
@@ -96,54 +115,32 @@ if (startBtn) {
   });
 }
 
-// Renderizar pergunta atual
 function renderQuestion() {
   const q = questions[currentQuestionIndex];
 
-  // Atualizar barra de progresso
   const progressPercent =
-    ((currentQuestionIndex) / questions.length) * 100;
+    (currentQuestionIndex / questions.length) * 100;
   progressBar.style.width = `${progressPercent}%`;
 
-  // Montar HTML da pergunta e opções
   let html = `
-    <div class="quiz-question">
-      ${q.question}
-    </div>
+    <div class="quiz-question">${q.question}</div>
     <div class="quiz-options">
   `;
 
   q.answers.forEach((answer, index) => {
-    html += `
-      <div class="quiz-option" data-index="${index}">
-        ${answer}
-      </div>
-    `;
+    html += `<div class="quiz-option">${answer}</div>`;
   });
 
   html += `</div>`;
-
   quizStep.innerHTML = html;
 
-  // Adicionar listeners às opções
-  const optionElements = document.querySelectorAll(".quiz-option");
-  optionElements.forEach((opt) => {
+  document.querySelectorAll(".quiz-option").forEach((opt) => {
     opt.addEventListener("click", handleAnswerClick);
   });
 }
 
-// Ao clicar numa resposta
 function handleAnswerClick(e) {
-  const el = e.currentTarget;
-  const answerText = el.textContent.trim();
-
-  // Guardar resposta (se quiseres usar depois)
-  selectedAnswers.push({
-    question: questions[currentQuestionIndex].question,
-    answer: answerText
-  });
-
-  // Ir para próxima pergunta ou finalizar
+  selectedAnswers.push(e.currentTarget.textContent.trim());
   currentQuestionIndex++;
 
   if (currentQuestionIndex < questions.length) {
@@ -153,17 +150,19 @@ function handleAnswerClick(e) {
   }
 }
 
-// Quando terminar todas as perguntas
 function finishQuiz() {
-  // Barra de progresso cheia
   progressBar.style.width = "100%";
 
-  // Esconder quiz e mostrar resultado
+  if (typeof gtag === "function") {
+    gtag("event", "quiz_completed", {
+      event_category: "quiz"
+    });
+  }
+
   quizContainer.classList.add("hidden");
   resultSection.classList.remove("hidden");
 
-  // (Opcional) redirecionar automaticamente para a landing após alguns segundos:
-   setTimeout(() => {
-     window.location.href = landingUrl;
-    }, 3000);
+  setTimeout(() => {
+    window.location.href = landingUrl;
+  }, 3000);
 }

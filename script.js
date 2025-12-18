@@ -2,11 +2,16 @@
 // SCRIPT QUIZ · RETO ZEYRA 21 DÍAS
 // ----------------------------------------
 
+// Safe wrapper para GA4
+function safeGtag() {
+  if (typeof window.gtag === "function") {
+    window.gtag.apply(null, arguments);
+  }
+}
+
 // Evento: quiz aberto
 window.addEventListener("DOMContentLoaded", () => {
-  if (typeof gtag === "function") {
-    gtag("event", "quiz_opened");
-  }
+  safeGtag("event", "quiz_opened");
 });
 
 // Seleção dos elementos principais
@@ -21,9 +26,7 @@ const resultSection = document.getElementById("resultSection");
 const landingUrl = "landing.html";
 
 function goToLanding() {
-  if (typeof gtag === "function") {
-    gtag("event", "go_to_landing_click");
-  }
+  safeGtag("event", "go_to_landing_click");
   window.location.href = landingUrl;
 }
 
@@ -46,8 +49,7 @@ const questions = [
     ]
   },
   {
-    question:
-      "¿Alguna vez pensaste que tu vida sería distinta si hubieras cuidado de ti antes?",
+    question: "¿Alguna vez pensaste que tu vida sería distinta si hubieras cuidado de ti antes?",
     answers: [
       "🥹 Muchas veces",
       "😓 Sí, y eso me frustra",
@@ -94,10 +96,7 @@ let selectedAnswers = [];
 // Iniciar quiz
 if (startBtn) {
   startBtn.addEventListener("click", () => {
-
-    if (typeof gtag === "function") {
-      gtag("event", "quiz_started");
-    }
+    safeGtag("event", "quiz_started");
 
     heroSection.classList.add("hidden");
     quizContainer.classList.remove("hidden");
@@ -120,7 +119,7 @@ function renderQuestion() {
     <div class="quiz-options">
   `;
 
-  q.answers.forEach((answer, index) => {
+  q.answers.forEach((answer) => {
     html += `<div class="quiz-option">${answer}</div>`;
   });
 
@@ -146,9 +145,7 @@ function handleAnswerClick(e) {
 function finishQuiz() {
   progressBar.style.width = "100%";
 
-  if (typeof gtag === "function") {
-    gtag("event", "quiz_completed");
-  }
+  safeGtag("event", "quiz_completed");
 
   quizContainer.classList.add("hidden");
   resultSection.classList.remove("hidden");

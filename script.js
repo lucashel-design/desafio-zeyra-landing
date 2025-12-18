@@ -5,10 +5,7 @@
 // Evento: quiz aberto
 window.addEventListener("DOMContentLoaded", () => {
   if (typeof gtag === "function") {
-    gtag("event", "quiz_opened", {
-      event_category: "quiz",
-      event_label: "Quiz Zeyra"
-    });
+    gtag("event", "quiz_opened");
   }
 });
 
@@ -25,9 +22,7 @@ const landingUrl = "landing.html";
 
 function goToLanding() {
   if (typeof gtag === "function") {
-    gtag("event", "go_to_landing_click", {
-      event_category: "funnel"
-    });
+    gtag("event", "go_to_landing_click");
   }
   window.location.href = landingUrl;
 }
@@ -101,9 +96,7 @@ if (startBtn) {
   startBtn.addEventListener("click", () => {
 
     if (typeof gtag === "function") {
-      gtag("event", "quiz_started", {
-        event_category: "quiz"
-      });
+      gtag("event", "quiz_started");
     }
 
     heroSection.classList.add("hidden");
@@ -154,9 +147,7 @@ function finishQuiz() {
   progressBar.style.width = "100%";
 
   if (typeof gtag === "function") {
-    gtag("event", "quiz_completed", {
-      event_category: "quiz"
-    });
+    gtag("event", "quiz_completed");
   }
 
   quizContainer.classList.add("hidden");

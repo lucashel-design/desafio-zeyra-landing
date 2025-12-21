@@ -23,7 +23,7 @@ const progressBar = document.getElementById("progressBar");
 const resultSection = document.getElementById("resultSection");
 
 // URL da landing final
-const landingUrl = "landing.html";
+const landingUrl = "https://lucashel-design.github.io/desafio-zeyra-landing/landing.html";
 
 function goToLanding() {
   safeGtag("event", "go_to_landing_click");
